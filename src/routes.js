@@ -5,7 +5,7 @@ const aboutController = require('./controllers/aboutController');
 const router = express.Router();
 
 router.use(homeController)
-router.all('/create', cubeController)
-router.all('/about',aboutController)
+router.use(cubeController)
+router.use(aboutController)
 
 module.exports = router;
