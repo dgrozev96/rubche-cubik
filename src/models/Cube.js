@@ -1,6 +1,5 @@
 const uniqid = require('uniqid');
 
-
 class Cube {
     static cubes = [
         {

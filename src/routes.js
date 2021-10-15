@@ -5,7 +5,7 @@ const aboutController = require('./controllers/aboutController');
 const router = express.Router();
 
 router.use(homeController)
-router.use(cubeController)
+router.use('/cube',cubeController)
 router.use(aboutController)
 router.use('*', (req, res) => {
     res.render('404')
