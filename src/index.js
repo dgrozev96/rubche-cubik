@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const routes = require('./routes');
 const app = express();
+const config = require('./config/config.json')[process.env.NODE_ENV || 'development'];
 
 app.use(express.urlencoded({extended: true}));
 
@@ -10,4 +11,4 @@ app.use(express.static(path.resolve(__dirname, './public')));
 app.use(routes)
 
 
-app.listen(5001, console.log.bind(console, 'App s running on http://localhost:5001'));
+app.listen(config.PORT, console.log.bind(console, `App s running on http://localhost:${config.PORT}`));
