@@ -13,8 +13,9 @@ const accessorySchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        maxlength: 50,
+        maxlength: 500,
     }
 })
 
-const accessory = mongoose.model('Accessory', 'accessorySchema')
+const Accessory = mongoose.model('Accessory', accessorySchema)
+module.exports = Accessory;
