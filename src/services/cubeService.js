@@ -3,7 +3,9 @@ const Cube = require('../models/Cube');
 const cubeDb = [];
 const getAll = () => Cube.find().lean();
 
-const getOne = (id) => Cube.findById(id).lean();
+const getOne = (id) => {
+    return Cube.findById(id).populate('accessories').lean();
+}
 const create = (name, description, imageUrl, difficulty) => {
     let cube = new Cube({
         name,
@@ -30,10 +32,10 @@ const search = (text, from, to) => {
 }
 
 const attachAccessory = async (cubeId, accessoryId) => {
-let cube = await Cube.findById(cubeId);
-let accessory = await Accessory.findById(accessoryId);
-cube.accessories.push(accessory)
-return cube.save();
+    let cube = await Cube.findById(cubeId);
+    let accessory = await Accessory.findById(accessoryId);
+    cube.accessories.push(accessory)
+    return cube.save();
 }
 const cubeService = {
     getAll,
