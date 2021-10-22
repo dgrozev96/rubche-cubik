@@ -32,7 +32,11 @@ const cubeSchema = mongoose.Schema({
     ]
 
 
-})
+});
+
+cubeSchema.statics.findByName = function(name) {
+    return this.find({name})
+}
 
 const Cube = mongoose.model('Cube', cubeSchema)
 
