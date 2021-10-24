@@ -1,4 +1,7 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { createToken } = require('../utils/jwtUtils');
+const { SECRET } = require('../constants');
 
 const User = require('../models/User');
 
@@ -15,13 +18,16 @@ exports.login = function (username, password) {
     return User.findByUsername(username)
         .then(user => Promise.all([user.validatePassword(password), user]))
         .then(([isValid, user]) => {
-            if(isValid){
+            if (isValid) {
                 return user;
-            } else {    
-                throw {message: 'Username or password are invalid'}
+            } else {
+                throw { message: 'Username or password are invalid' }
             }
         })
         .catch(err => {
             return null;
         })
 }
+
+
+
